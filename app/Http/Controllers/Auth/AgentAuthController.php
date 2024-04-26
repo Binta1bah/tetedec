@@ -28,12 +28,19 @@ class AgentAuthController extends Controller
         // Authentification de l'agent
         if (Auth::guard('agent')->attempt($request->only('email', 'password'))) {
             // Si l'authentification réussit, rediriger vers la page d'accueil ou d'agent
-            return redirect()->route('dashboard');
+            return redirect()->route('impots.index');
         }
 
         // Si l'authentification échoue, retourner avec des erreurs
         return back()->withErrors([
             'email' => 'Les informations d\'identification ne correspondent pas.',
         ]);
+    }
+
+    public function logout()
+    {
+        Auth::guard('agent')->logout();
+
+        return redirect()->route('acceuil');
     }
 }

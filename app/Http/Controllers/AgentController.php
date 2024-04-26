@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AgentResister;
 use App\Models\Agent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AgentController extends Controller
 {
@@ -31,34 +34,44 @@ class AgentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
         // Validation des données de la requête
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'matricule' => 'required|string|unique:agents,matricule|max:255',
             'email' => 'required|email|unique:agents,email|max:255',
-            'password' => 'required|string|min:8',
             'departement' => 'required|string|max:255',
         ]);
-    
+
+
+        // Obtenir le nombre d'agents déjà enregistrés
+        $agentCount = Agent::count();
+
+      // Générer le matricule avec le format souhaité
+        $matricule = 'TDEC' . sprintf('%04d', $agentCount + 1);
+
+        $genPassword = Str::random(8); // Génération d'un mot de passe aléatoire de 10 caractères
+
         // Hashage du mot de passe avant de l'enregistrer
-        $validatedData['password'] = bcrypt($validatedData['password']);
-    
+        $hasPassword = bcrypt($genPassword);
+
         // Création d'un nouvel agent
         $agent = new Agent;
         $agent->nom = $validatedData['nom'];
         $agent->prenom = $validatedData['prenom'];
-        $agent->matricule = $validatedData['matricule'];
+        $agent->matricule =$matricule;
         $agent->email = $validatedData['email'];
-        $agent->password = $validatedData['password'];
+        $agent->password = $hasPassword;
         $agent->departement = $validatedData['departement'];
         $agent->save(); // Enregistrement de l'agent dans la base de données
-    
+
+        // Envoi du mot de passe par e-mail à l'agent nouvellement enregistré
+       
+        Mail::to($agent->email)->send(new AgentResister($agent, $genPassword));
+
         // Redirection vers une page avec un message de succès
         return redirect()->route('agents.index')->with('success', 'Agent créé avec succès');
-    }
-    
+}
 
     /**
      * Display the specified resource.
@@ -90,9 +103,6 @@ class AgentController extends Controller
             'email' => 'required|email|unique:agents,email,' . $agent->id . '|max:255',
             'departement' => 'required|string|max:255',
         ]);
-
-        
-
 
         // Mettre à jour les données de l'agent
         $agent->update($validatedData);

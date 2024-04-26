@@ -37,7 +37,13 @@ class PaiementController extends Controller
      */
     public function store(Request $request)
     {
+
+        $nombre = Paiement::count();
+        $date = date('dmy');
+        $quittance = 'QUI' . $date . sprintf('%05d', $nombre + 1);
+
         $data = $request->all();
+        $data['numeroQuittance'] = $quittance;
         $agent = Auth::id();
         $data['agent_id'] = $agent;
         $paiement = Paiement::create($data);

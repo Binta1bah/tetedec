@@ -39,7 +39,14 @@ class DeclarationController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+
+        $nombre = Declaration::count();
+
+        $date = date('dmy');
+        $numero = 'DEC' . $date . sprintf('%05d', $nombre + 1);
+       
         $data = $request->all();
+        $data['numero'] = $numero;
         $agent = Auth::id();
         $data['agent_id'] = $agent;
         $declaration = Declaration::create($data);

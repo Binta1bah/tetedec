@@ -16,6 +16,9 @@ Route::post('/agent/login', [AgentAuthController::class, 'login'])->name('login'
 
 
 Route::group(['middleware' => ['auth:agent']], function() {
+
+    Route::post('/agent/logout', [AgentAuthController::class, 'logout'])->name('logout');
+    
     Route::post('/declarations', [DeclarationController::class, 'store'])->name('declarations.store');
     Route::delete('/contribuables/{contribuable}', [DeclarationController::class, 'destroy'])->name('declarations.destroy');
     Route::post('/paiements', [PaiementController::class, 'store'])->name('paiements.store');
@@ -61,6 +64,7 @@ Route::group(['middleware' => ['auth:agent']], function() {
     Route::get('/paiements/{paiement}/edit', [PaiementController::class, 'edit'])->name('paiements.edit');
     Route::put('/paiement/{paiement}', [PaiementController::class, 'update'])->name('paiements.update');
 });
+
 
 
 

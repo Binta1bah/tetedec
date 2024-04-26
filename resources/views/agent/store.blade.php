@@ -18,6 +18,8 @@
         <div class="app-card-body">
             <form class="settings-form" action="{{ route('agents.store') }}" method="POST">
                 @csrf
+
+                
                 <div class="mb-3">
                     <label for="setting-input-2" class="form-label">Nom Agent</label>
                     <input type="text" class="form-control" name="nom" id="setting-input-2" value="" required>
@@ -25,10 +27,6 @@
                 <div class="mb-3">
                     <label for="setting-input-2" class="form-label">Prenom Agent</label>
                     <input type="text" class="form-control" name="prenom" id="setting-input-2" value="" required>
-                </div><div class="mb-3">
-                    <label for="setting-input-2" class="form-label">Matricule</label>
-                    <input type="text" class="form-control" name="matricule" id="setting-input-2" value="" required>
-                </div>
                 
                 <div class="col">
                     <label for="setting-input-3" class="form-label">Département</label>
@@ -49,14 +47,7 @@
                     <label for="setting-input-3" class="form-label">Email</label>
                     <input type="email" class="form-control" name="email" id="setting-input-3" value="">
                 </div>
-                <div class="mb-3">
-                    <label for="setting-input-3" class="form-label">Mot de passe</label>
-                    <input type="text" class="form-control" name="password" id="setting-input-3" value="">
-                </div>
-                <div class="mb-3">
-                    <label for="setting-input-3" class="form-label">Confirmer mot de passe</label>
-                    <input type="text" class="form-control" name="confirme" id="setting-input-3" value="">
-                </div>
+
                 <button type="submit" class="btn app-btn-primary" >Ajouter Agent</button>
             </form>
         </div><!--//app-card-body-->

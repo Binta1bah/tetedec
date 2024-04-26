@@ -134,8 +134,7 @@
 			            <div class="app-utility-item">
 				            <a href="settings.html" title="Settings">
 					            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-								<span class="nav-link-text">{{auth()->user()->nom}}  {{auth()->user()->prenom}}</span>
-					        </a>
+								  </a>
 					    </div><!--//app-utility-item-->
 			            
 			            <div class="app-utility-item app-user-dropdown dropdown">
@@ -146,7 +145,12 @@
 							</a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
 								
-								<li><a class="dropdown-item" href="login.html">Deconnexion</a></li>
+								<li>
+									<form action="{{route('logout')}}" method="POST">
+										@csrf
+										<button class="dropdown-item" type="submit" style="color:rgb(17, 16, 16);">Deconnexion</button>
+									</form>
+								</li>
 							</ul>
 			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
@@ -204,7 +208,7 @@
 					        </a><!--//nav-link-->
 					        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link" href="{{route('agent.store')}}">Ajouter</a></li>
+							        
 							        <li class="submenu-item"><a class="submenu-link" href="{{route('agents.index')}}">Liste des agents</a></li>
 							         </ul>
 					        </div>
@@ -232,8 +236,7 @@
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
 							        <li class="submenu-item"><a class="submenu-link" href="{{route('contribuables.index')}}">Liste des contribuables</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="signup.html">Contribuables archivés</a></li>
-	
+							        
 						        </ul>
 					        </div>
 					    </li><!--//nav-item-->
@@ -262,8 +265,7 @@
 					        <div id="submenu-3" class="collapse submenu submenu-3" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
 							        <li class="submenu-item"><a class="submenu-link" href="{{route('declarations.index')}}">Liste des Déclarations</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="signup.html">Déclarations archivés</a></li>
-	
+							        
 						        </ul>
 					        </div>
 					    </li><!--//nav-item-->
@@ -294,8 +296,7 @@
 					        <div id="submenu-5" class="collapse submenu submenu-5" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
 							        <li class="submenu-item"><a class="submenu-link" href="{{route('paiements.index')}}">Liste des paiements</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="signup.html">Paiements archivés</a></li>
-	
+							        
 						        </ul>
 					        </div>
 					    </li><!--//nav-item-->
