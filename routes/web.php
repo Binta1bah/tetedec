@@ -12,10 +12,11 @@ use App\Http\Controllers\PaiementController;
 
 Route::post('/agent/login', [AgentAuthController::class, 'login'])->name('login');
 
-
-
-
+    
 Route::group(['middleware' => ['auth:agent']], function() {
+
+
+    Route::post('/agents', [AgentController::class, 'store'])->name('agents.store');
 
     Route::post('/agent/logout', [AgentAuthController::class, 'logout'])->name('logout');
     
@@ -27,7 +28,7 @@ Route::group(['middleware' => ['auth:agent']], function() {
     })->name('dashboard');
 
 
-    Route::post('/agents', [AgentController::class, 'store'])->name('agents.store');
+    
     Route::get('/agents', [AgentController::class, 'index'])->name('agents.index');
     Route::delete('/agents/{agent}', [AgentController::class, 'destroy'])->name('agents.destroy');
     Route::get('/agents/{agent}/edit', [AgentController::class, 'edit'])->name('agents.edit');
@@ -63,6 +64,9 @@ Route::group(['middleware' => ['auth:agent']], function() {
     Route::delete('/paiements/{paiement}', [PaiementController::class, 'destroy'])->name('paiements.destroy');
     Route::get('/paiements/{paiement}/edit', [PaiementController::class, 'edit'])->name('paiements.edit');
     Route::put('/paiement/{paiement}', [PaiementController::class, 'update'])->name('paiements.update');
+
+
+
 });
 
 
