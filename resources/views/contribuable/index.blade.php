@@ -22,7 +22,7 @@
 				</div><!--//col-->
 
 				<div class="col-auto">
-					<a class="btn app-btn-secondary" href="{{route('contribuable.store')}}">
+					<a class="btn app-btn-secondary" href="{{route('contribuables.create')}}">
 
 						Ajouter Contribuable
 					</a>

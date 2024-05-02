@@ -31,6 +31,11 @@ class AgentAuthController extends Controller
             return redirect()->route('impots.index');
         }
 
+        if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
+            // Connexion réussie pour un agent
+            return redirect()->route('impots.index');
+        }
+
         // Si l'authentification échoue, retourner avec des erreurs
         return back()->withErrors([
             'email' => 'Les informations d\'identification ne correspondent pas.',

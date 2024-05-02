@@ -20,4 +20,8 @@ class Paiement extends Model
     public function contribuable() {
         return $this->belongsTo(Contribuable::class);
     }
+
+    public function agent() {
+        return $this->belongsTo(Agent::class);
+    }
 }

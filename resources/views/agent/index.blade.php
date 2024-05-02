@@ -22,7 +22,7 @@
 				</div><!--//col-->
 
 				<div class="col-auto">
-					<a class="btn app-btn-secondary" href="{{route('agent.store')}}">
+					<a class="btn app-btn-secondary" href="{{route('agents.create')}}">
 
 						Ajouter un Agent
 					</a>

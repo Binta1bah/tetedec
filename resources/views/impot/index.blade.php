@@ -71,7 +71,7 @@
                                 <td class="cell">{{ $impot->taux }}</td>
                                 <td class="cell">{{ $impot->declaration_id }}</td>
                                
-								<td class="cell"><a class="btn btn-secondary" href="{{route('impot.edit')}}" style="color:white;">Modifier</a></td>
+								<td class="cell"><a class="btn btn-secondary" href="{{route('impots.edit', ['impot' => $impot->id])}}" style="color:white;">Modifier</a></td>
 								<td class="cell">
 									<form action="{{ route('impots.destroy', $impot->id) }}" method="POST">
 										@csrf

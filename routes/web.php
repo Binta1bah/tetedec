@@ -12,30 +12,31 @@ use App\Http\Controllers\PaiementController;
 
 Route::post('/agent/login', [AgentAuthController::class, 'login'])->name('login');
 
+Route::group(['middleware' => ['auth:web']], function() {
+    
+
+});
     
 Route::group(['middleware' => ['auth:agent']], function() {
 
 
-    Route::post('/agents', [AgentController::class, 'store'])->name('agents.store');
-
-    Route::post('/agent/logout', [AgentAuthController::class, 'logout'])->name('logout');
-    
-    Route::post('/declarations', [DeclarationController::class, 'store'])->name('declarations.store');
-    Route::delete('/contribuables/{contribuable}', [DeclarationController::class, 'destroy'])->name('declarations.destroy');
-    Route::post('/paiements', [PaiementController::class, 'store'])->name('paiements.store');
     Route::get('/dashboard', function () {
         return view('layout.index');
     })->name('dashboard');
 
 
-    
+    // Route Agent
+    Route::post('/agents', [AgentController::class, 'store'])->name('agents.store');
+    Route::post('/agent/logout', [AgentAuthController::class, 'logout'])->name('logout');
     Route::get('/agents', [AgentController::class, 'index'])->name('agents.index');
+    Route::get('/ajout/agent', [AgentController::class, 'create'])->name('agents.create');
     Route::delete('/agents/{agent}', [AgentController::class, 'destroy'])->name('agents.destroy');
     Route::get('/agents/{agent}/edit', [AgentController::class, 'edit'])->name('agents.edit');
     Route::put('/agents/{agent}', [AgentController::class, 'update'])->name('agents.update');
 
     //Route Contribuable
     Route::get('/contribuables', [ContribuableController::class, 'index'])->name('contribuables.index');
+    Route::get('/ajout/contribuable', [ContribuableController::class, 'create'])->name('contribuables.create');
     Route::post('/contribuables', [ContribuableController::class, 'store'])->name('contribuables.store');
     Route::delete('/contribuables/{contribuable}', [ContribuableController::class, 'destroy'])->name('contribuables.delete');
     Route::get('/contribuables/{contribuable}/edit', [ContribuableController::class, 'edit'])->name('contribuables.edit');
@@ -65,11 +66,9 @@ Route::group(['middleware' => ['auth:agent']], function() {
     Route::get('/paiements/{paiement}/edit', [PaiementController::class, 'edit'])->name('paiements.edit');
     Route::put('/paiement/{paiement}', [PaiementController::class, 'update'])->name('paiements.update');
 
-
+   
 
 });
-
-
 
 
 

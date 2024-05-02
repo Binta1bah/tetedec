@@ -73,7 +73,7 @@
 								<td class="cell">{{ $paiement->ModePaiement }}</td>
                                 <td class="cell">{{ $paiement->montant }}</td>
 								<td class="cell">{{ $paiement->created_at }}</td>
-                                <td class="cell">{{ $paiement->agent_id }}</td>
+                                <td class="cell">{{ $paiement->agent->matricule }}</td>
 								<td class="cell">{{ $paiement->contribuable->ifu }}</td>
                               
 								

@@ -136,7 +136,8 @@
 					            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 								  </a>
 					    </div><!--//app-utility-item-->
-			           
+						<span class="nav-link-text">{{auth()->user()->nom}}  {{auth()->user()->prenom}}</span>
+
 			            <div class="app-utility-item app-user-dropdown dropdown">
 				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
 								<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -23,7 +23,7 @@ class ContribuableController extends Controller
      */
     public function create()
     {
-        //
+        return view('contribuable.store');
     }
 
     /**

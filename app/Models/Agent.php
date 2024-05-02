@@ -20,5 +20,13 @@ class Agent extends Authenticatable
         'password',
     ];
 
+    public function declarations() {
+        return $this->hasMany(Declaration::class);
+    }
+
+    public function paiements() {
+        return $this->hasMany(Paiement::class);
+    }
+
     
 }

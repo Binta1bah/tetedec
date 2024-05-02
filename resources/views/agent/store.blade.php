@@ -1,6 +1,7 @@
 @extends('layout.index')
 
 @section('content')
+
 @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -38,7 +39,7 @@
                         <option value="Éducation">Éducation</option>
 
                     </select>
-                    @error("devise")
+                    @error("departement")
                     <span style="color:red">{{$message}}</span>
 
                     @enderror

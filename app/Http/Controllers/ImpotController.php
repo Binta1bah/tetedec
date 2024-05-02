@@ -57,7 +57,12 @@ class ImpotController extends Controller
      */
     public function edit(Impot $impot)
     {
-        //
+        $declarations = Declaration::all();
+        return view('impot.edit')->with
+        ([
+            'declarations' => $declarations,
+            'impot' => $impot
+        ]);
     }
 
     /**
@@ -65,7 +70,12 @@ class ImpotController extends Controller
      */
     public function update(Request $request, Impot $impot)
     {
-        //
+        $data = $request->all();
+        $impot->update($data);
+
+        // Rediriger après la mise à jour
+        return redirect()->route('impots.index')->with('success', 'L\'impot a été mis à jour avec succès.');
+
     }
 
     /**
