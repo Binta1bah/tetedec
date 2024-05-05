@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\AgentResister;
 use App\Models\Agent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -30,6 +32,42 @@ class AgentController extends Controller
     {
         return view('agent.store');
     }
+
+
+    public function changePassword()
+    {
+        return view('auth.changePassword');
+    }
+
+    public function UpdatePassword(Request $request)
+    {
+      
+        $user = Auth::user();
+
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'confirmation' => 'required|string|min:8',
+        ]);
+    
+        // Vérifier si le nouveau mot de passe et sa confirmation correspondent
+        if ($request->password === $request->confirmation) {
+           
+            // Mettre à jour le mot de passe de l'utilisateur
+            $user->password = Hash::make($request->password);
+            $user->save();
+    
+            return redirect()->route('impots.index')->with('success', 'Votre mot de passe a été mis à jour avec succès.');
+        }
+    
+        // Si les mots de passe ne correspondent pas, rediriger avec un message d'erreur
+        return redirect()->back()->withErrors(['password' => 'Les mots de passe ne correspondent pas.'])->withInput();
+       
+        
+    }
+
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -130,7 +168,6 @@ class AgentController extends Controller
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'matricule' => 'required|string|unique:agents,matricule,' . $agent->id . '|max:255',
             'email' => 'required|email|unique:agents,email,' . $agent->id . '|max:255',
             'departement' => 'required|string|max:255',
         ]);

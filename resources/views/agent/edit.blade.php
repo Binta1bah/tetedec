@@ -23,10 +23,6 @@
                 <div class="mb-3">
                     <label for="setting-input-2" class="form-label">Prenom Agent</label>
                     <input type="text" class="form-control" name="prenom" id="setting-input-2" value="{{$agent->prenom}}" required>
-                </div><div class="mb-3">
-                    <label for="setting-input-2" class="form-label">Matricule</label>
-                    <input type="text" class="form-control" name="matricule" id="setting-input-2" value="{{$agent->matricule}}" required>
-                </div>
                 
                 <div class="col">
                     <label for="setting-input-3" class="form-label">Département</label>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Declaration;
 use App\Models\Impot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ImpotController extends Controller
 {
@@ -38,6 +39,8 @@ class ImpotController extends Controller
     {
        // dd($request->all());
         $data = $request->all();
+        $agent = Auth::id();
+        $data['agent_id'] = $agent;
         $impot = Impot::create($data);
        
         return redirect()->route('impots.index')->with('success', 'impôt ajouté avec succès');

@@ -48,7 +48,7 @@
 						<thead>
 							<tr>
 								<th class="cell">#Num</th>
-                                <th class="cell">Numero matricule</th>
+                                <th class="cell">Matricule Agent</th>
 								<th class="cell">Nature impôt</th>
 								<th class="cell">Taux impôt</th>
 								<th class="cell">Num declaration</th>
@@ -66,10 +66,10 @@
 						@foreach($impots as $index => $impot)
 							<tr>
 								<td class="cell">{{ $index + 1 }}</td>
-								<td class="cell">{{ $impot->matricule }}</td>
+								<td class="cell">{{ $impot->agent->matricule }}</td>
 								<td class="cell">{{ $impot->nature }}</td>
                                 <td class="cell">{{ $impot->taux }}</td>
-                                <td class="cell">{{ $impot->declaration_id }}</td>
+                                <td class="cell">{{ $impot->declaration->numero }}</td>
                                
 								<td class="cell"><a class="btn btn-secondary" href="{{route('impots.edit', ['impot' => $impot->id])}}" style="color:white;">Modifier</a></td>
 								<td class="cell">

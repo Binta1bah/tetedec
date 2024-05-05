@@ -12,10 +12,14 @@ use App\Http\Controllers\PaiementController;
 
 Route::post('/agent/login', [AgentAuthController::class, 'login'])->name('login');
 
-Route::group(['middleware' => ['auth:web']], function() {
+
+
+// Route::group(['middleware' => ['auth:web']], function() {
     
 
-});
+// });
+
+
     
 Route::group(['middleware' => ['auth:agent']], function() {
 
@@ -24,12 +28,15 @@ Route::group(['middleware' => ['auth:agent']], function() {
         return view('layout.index');
     })->name('dashboard');
 
+    Route::get('/change/password', [AgentController::class, 'changePassword'])->name('password.change');
+    Route::post('/update/password', [AgentController::class, 'UpdatePassword'])->name('password.update');
 
     // Route Agent
     Route::post('/agents', [AgentController::class, 'store'])->name('agents.store');
     Route::post('/agent/logout', [AgentAuthController::class, 'logout'])->name('logout');
     Route::get('/agents', [AgentController::class, 'index'])->name('agents.index');
     Route::get('/ajout/agent', [AgentController::class, 'create'])->name('agents.create');
+   
     Route::delete('/agents/{agent}', [AgentController::class, 'destroy'])->name('agents.destroy');
     Route::get('/agents/{agent}/edit', [AgentController::class, 'edit'])->name('agents.edit');
     Route::put('/agents/{agent}', [AgentController::class, 'update'])->name('agents.update');

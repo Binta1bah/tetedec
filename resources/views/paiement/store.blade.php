@@ -48,7 +48,7 @@
                     @enderror
                 </div><br>
                 
-                <button type="submit" class="btn app-btn-primary" >Ajouter paiement</button>
+                <button type="submit" class="btn app-btn-primary" > Enregistrer </button>
             </form>
         </div><!--//app-card-body-->
         

@@ -49,7 +49,7 @@
                     <input type="email" class="form-control" name="email" id="setting-input-3" value="">
                 </div>
 
-                <button type="submit" class="btn app-btn-primary" >Ajouter Agent</button>
+                <button type="submit" class="btn app-btn-primary" >Enregistrer</button>
             </form>
         </div><!--//app-card-body-->
         

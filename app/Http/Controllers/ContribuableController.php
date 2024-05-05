@@ -45,7 +45,13 @@ class ContribuableController extends Controller
     
         // dd('ok');
 
+        $nombre = Contribuable::count();
+
+        $date = date('dmy');
+        $ifu = 'IFU' . $date . sprintf('%05d', $nombre + 1);
+
         $data = $request->all();
+        $data['ifu'] = $ifu;
         // dd($data);
 
         $contribuable = Contribuable::create($data);

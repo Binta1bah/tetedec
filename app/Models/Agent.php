@@ -18,6 +18,7 @@ class Agent extends Authenticatable
         'departement',
         'email',
         'password',
+        'first_login'
     ];
 
     public function declarations() {
@@ -26,6 +27,10 @@ class Agent extends Authenticatable
 
     public function paiements() {
         return $this->hasMany(Paiement::class);
+    }
+
+    public function impots() {
+        return $this->hasMany(Impot::class);
     }
 
     
